@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 using VRage.FileSystem;
 using VRage.Utils;
 
-namespace ClientPlugin.Settings
+namespace wagyourtail.JetpackBoosting.Settings
 {
     public static class ConfigStorage
     {

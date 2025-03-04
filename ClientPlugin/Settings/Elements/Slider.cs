@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using VRage.Utils;
 
-namespace ClientPlugin.Settings.Elements
+namespace wagyourtail.JetpackBoosting.Settings.Elements
 {
     internal class SliderAttribute : Attribute, IElement
     {
@@ -95,7 +95,7 @@ namespace ClientPlugin.Settings.Elements
 
             ValueUpdate(slider);
 
-            var label = Tools.GetLabelOrDefault(name, Label);
+            var label = Tools.Tools.GetLabelOrDefault(name, Label);
             return new List<Control>()
             {
                 new Control(new MyGuiControlLabel(text: label), minWidth: Control.LabelMinWidth),

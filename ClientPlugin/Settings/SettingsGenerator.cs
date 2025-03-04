@@ -1,14 +1,14 @@
-﻿using ClientPlugin.Settings.Elements;
-using ClientPlugin.Settings.Layouts;
-using Sandbox.Graphics.GUI;
+﻿using Sandbox.Graphics.GUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using wagyourtail.JetpackBoosting.Settings.Elements;
+using wagyourtail.JetpackBoosting.Settings.Layouts;
 
 
-namespace ClientPlugin.Settings
+namespace wagyourtail.JetpackBoosting.Settings
 {
     internal class AttributeInfo
     {

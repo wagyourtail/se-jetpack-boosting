@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ClientPlugin.Settings.Elements
+namespace wagyourtail.JetpackBoosting.Settings.Elements
 {
     internal interface IElement
     {

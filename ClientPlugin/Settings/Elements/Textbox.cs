@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ClientPlugin.Settings.Elements
+namespace wagyourtail.JetpackBoosting.Settings.Elements
 {
     internal class TextboxAttribute : Attribute, IElement
     {
@@ -21,7 +21,7 @@ namespace ClientPlugin.Settings.Elements
             textBox.TextChanged += box => propertySetter(box.Text);
             textBox.SetToolTip(Description);
 
-            var label = Tools.GetLabelOrDefault(name, Label);
+            var label = Tools.Tools.GetLabelOrDefault(name, Label);
             return new List<Control>()
             {
                 new Control(new MyGuiControlLabel(text: label), minWidth: Control.LabelMinWidth),

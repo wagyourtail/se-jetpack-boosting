@@ -9,8 +9,9 @@ using VRage.Input;
 using VRage.Utils;
 using VRage;
 using VRageMath;
+using wagyourtail.JetpackBoosting.Settings.Tools;
 
-namespace ClientPlugin.Settings.Elements
+namespace wagyourtail.JetpackBoosting.Settings.Elements
 {
     internal class KeybindAttribute : Attribute, IElement
     {
@@ -33,7 +34,7 @@ namespace ClientPlugin.Settings.Elements
 
             var binding = PropertyGetter();
 
-            var label = new MyGuiControlLabel(text: Tools.GetLabelOrDefault(name, Label));
+            var label = new MyGuiControlLabel(text: Tools.Tools.GetLabelOrDefault(name, Label));
 
             var ctrl = new MyGuiControlCheckbox(isChecked: binding.Ctrl, toolTip: "Ctrl");
             var alt = new MyGuiControlCheckbox(isChecked: binding.Alt, toolTip: "Alt");

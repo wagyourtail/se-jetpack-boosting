@@ -1,10 +1,10 @@
 ﻿using Sandbox.Graphics.GUI;
 using System;
 using System.Collections.Generic;
-using ClientPlugin.Settings.Elements;
 using VRageMath;
+using wagyourtail.JetpackBoosting.Settings.Elements;
 
-namespace ClientPlugin.Settings.Layouts
+namespace wagyourtail.JetpackBoosting.Settings.Layouts
 {
     internal abstract class Layout
     {

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Reflection;
-using ClientPlugin.Settings;
-using ClientPlugin.Settings.Layouts;
 using HarmonyLib;
 using Sandbox.Graphics.GUI;
 using VRage.Plugins;
+using wagyourtail.JetpackBoosting.Settings;
+using wagyourtail.JetpackBoosting.Settings.Layouts;
 
-namespace ClientPlugin
+namespace wagyourtail.JetpackBoosting
 {
     // ReSharper disable once UnusedType.Global
     public class Plugin : IPlugin, IDisposable
     {
-        public const string Name = "ClientPluginTemplate";
+        public const string Name = "JetpackBoosting";
         public static Plugin Instance { get; private set; }
         private SettingsGenerator settingsGenerator;
 

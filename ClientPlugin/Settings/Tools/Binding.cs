@@ -1,6 +1,6 @@
 using VRage.Input;
 
-namespace ClientPlugin.Settings.Elements
+namespace wagyourtail.JetpackBoosting.Settings.Tools
 {
     public struct Binding
     {

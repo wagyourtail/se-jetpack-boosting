@@ -1,119 +1,87 @@
-using ClientPlugin.Settings;
-using ClientPlugin.Settings.Elements;
-using Sandbox.Graphics.GUI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using VRage.Input;
-using VRageMath;
+using wagyourtail.JetpackBoosting.Settings;
+using wagyourtail.JetpackBoosting.Settings.Elements;
 
 
-namespace ClientPlugin
+namespace wagyourtail.JetpackBoosting
 {
-    public enum ExampleEnum
-    {
-        FirstAlpha,
-        SecondBeta,
-        ThirdGamma,
-        AndTheDelta,
-        Epsilon
-    }
-
     public class Config : INotifyPropertyChanged
     {
         #region Options
 
-        // TODO: Define your configuration options and their default values
-        private bool toggle = true;
-        private int integer = 2;
-        private float number = 0.1f;
-        private string text = "Default Text";
-        private ExampleEnum dropdown = ExampleEnum.FirstAlpha;
-        private Color color = Color.Cyan;
-        private Color colorWithAlpha = new Color(0.8f, 0.6f, 0.2f, 0.5f);
-        private Binding keybind = new Binding(MyKeys.None);
+        private int noBoostSpeed = 13;
+        private int slowDownSpeed = 14;
+        
+        private bool slowWhenDampenersOff = false;
+        
+        private float hitSpeedMultiplier = .5f;
 
         #endregion
 
         #region User interface
 
         // TODO: Settings dialog title
-        public readonly string Title = "Config Demo";
+        public readonly string Title = "Jetpack Boosting";
 
         // TODO: Settings dialog controls, one property for each configuration option
 
-        [Checkbox(description: "Checkbox Tooltip")]
-        public bool Toggle
+
+        [Slider(0f, 100f, 1f, SliderAttribute.SliderType.Integer, description: "Speed to go when not hitting the boost keybind")]
+        public int NoBoostSpeed
         {
-            get => toggle;
-            set => SetField(ref toggle, value);
+            get => noBoostSpeed;
+            set => SetField(ref noBoostSpeed, value);
         }
 
-        [Slider(-1f, 10f, 1f, SliderAttribute.SliderType.Integer, description: "Integer Slider Tooltip")]
-        public int Integer
+        public int NoBoostSpeedSq
         {
-            get => integer;
-            set => SetField(ref integer, value);
+            get => noBoostSpeed * NoBoostSpeed;
+            set => NoBoostSpeed = (int)Math.Sqrt(value);
+        }
+        
+        [Slider(0f, 100f, 1f, SliderAttribute.SliderType.Integer, description: "Speed to slow down to when releasing the boost keybind")]
+        public int SlowDownSpeed
+        {
+            get => slowDownSpeed;
+            set
+            {
+                value = Math.Max(value, NoBoostSpeed);
+                SetField(ref slowDownSpeed, value);
+            }
         }
 
-        [Slider(-5f, 4.5f, 0.5f, SliderAttribute.SliderType.Float, description: "Float Slider Tooltip")]
-        public float Number
+        public int SlowDownSpeedSq
         {
-            get => number;
-            set => SetField(ref number, value);
+            get => slowDownSpeed * SlowDownSpeed;
+            set => SlowDownSpeed = (int)Math.Sqrt(value);
         }
 
-        [Textbox(description: "Textbox Tooltip")]
-        public string Text
+        [Checkbox(description: "Slow down when dampeners off")]
+        public bool SlowWhenDampenersOff
         {
-            get => text;
-            set => SetField(ref text, value);
+            get => slowWhenDampenersOff;
+            set => SetField(ref slowWhenDampenersOff, value);
         }
-
-        [Dropdown(description: "Dropdown Tooltip")]
-        public ExampleEnum Dropdown
+        
+        [Slider(0f, 1f, .01f, SliderAttribute.SliderType.Float, description: "Hit Speed Multiplier")]
+        public float HitSpeedMultiplier
         {
-            get => dropdown;
-            set => SetField(ref dropdown, value);
+            get => hitSpeedMultiplier;
+            set => SetField(ref hitSpeedMultiplier, value);
         }
-
-        [Color(description: "RGB color")]
-        public Color Color
+        
+        public float HitSpeedMultiplierSq
         {
-            get => color;
-            set => SetField(ref color, value);
-        }
-
-        [Color(hasAlpha: true, description: "RGBA color")]
-        public Color ColorWithAlpha
-        {
-            get => colorWithAlpha;
-            set => SetField(ref colorWithAlpha, value);
-        }
-
-        [Keybind(description: "Keybind Tooltip - Unbind by right clicking the button")]
-        public Binding Keybind
-        {
-            get => keybind;
-            set => SetField(ref keybind, value);
-        }
-
-        [Button(description: "Button Tooltip")]
-        public void Button()
-        {
-            MyGuiSandbox.AddScreen(MyGuiSandbox.CreateMessageBox(
-                MyMessageBoxStyleEnum.Info,
-                buttonType: MyMessageBoxButtonsType.OK,
-                messageText: new StringBuilder("You clicked me!"),
-                messageCaption: new StringBuilder("Custom Button Function"),
-                size: new Vector2(0.6f, 0.5f)
-            ));
+            get => hitSpeedMultiplier * HitSpeedMultiplier;
+            set => HitSpeedMultiplier = (float)Math.Sqrt(value);
         }
 
         #endregion
 
-        #region Property change notification bilerplate
+        #region Property change notification boilerplate
 
         public static readonly Config Default = new Config();
         public static readonly Config Current = ConfigStorage.Load();

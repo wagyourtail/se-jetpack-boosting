@@ -2,7 +2,7 @@ using Sandbox.Graphics.GUI;
 using System;
 using System.Collections.Generic;
 
-namespace ClientPlugin.Settings.Elements
+namespace wagyourtail.JetpackBoosting.Settings.Elements
 {
     class CheckboxAttribute : Attribute, IElement
     {
@@ -17,7 +17,7 @@ namespace ClientPlugin.Settings.Elements
 
         public List<Control> GetControls(string name, Func<object> propertyGetter, Action<object> propertySetter)
         {               
-            var label = Tools.GetLabelOrDefault(name, Label);
+            var label = Tools.Tools.GetLabelOrDefault(name, Label);
             return new List<Control>()
             {
                 new Control(new MyGuiControlLabel(text: label), minWidth: Control.LabelMinWidth),
